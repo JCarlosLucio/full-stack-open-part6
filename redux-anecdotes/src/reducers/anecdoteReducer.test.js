@@ -37,4 +37,21 @@ describe('anecdoteReducer', () => {
       { content: 'anecdote to vote', id: 2, votes: 1 },
     ]);
   });
+
+  test('should add a new anecdote', () => {
+    const action = {
+      type: 'NEW_ANECDOTE',
+      data: {
+        content: 'a new anecdote',
+        id: 3,
+        votes: 0,
+      },
+    };
+    const state = initialState;
+    deepFreeze(state);
+
+    const newState = anecdoteReducer(state, action);
+    expect(newState).toHaveLength(3);
+    expect(newState).toContainEqual(action.data);
+  });
 });

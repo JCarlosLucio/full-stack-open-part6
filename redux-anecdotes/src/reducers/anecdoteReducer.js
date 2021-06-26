@@ -31,10 +31,16 @@ const anecdoteReducer = (state = initialState, action) => {
       return state.map((anecdote) =>
         anecdote.id !== id ? anecdote : votedAnecdote
       );
+    case 'NEW_ANECDOTE':
+      return [...state, action.data];
 
     default:
       return state;
   }
+};
+
+export const createAnecdote = (anecdote) => {
+  return { type: 'NEW_ANECDOTE', data: asObject(anecdote) };
 };
 
 export default anecdoteReducer;
