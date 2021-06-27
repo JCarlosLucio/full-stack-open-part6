@@ -43,4 +43,8 @@ export const createAnecdote = (anecdote) => {
   return { type: 'NEW_ANECDOTE', data: asObject(anecdote) };
 };
 
+export const voteAnecdote = (id) => {
+  return { type: 'VOTE', data: { id } };
+};
+
 export default anecdoteReducer;
