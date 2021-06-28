@@ -8,9 +8,13 @@ import {
 import Anecdote from './Anecdote';
 
 const AnecdoteList = () => {
-  const anecdotes = useSelector(({ anecdotes }) =>
-    [...anecdotes].sort((a, b) => b.votes - a.votes)
-  );
+  const anecdotes = useSelector(({ anecdotes, filter }) => {
+    const filtered = anecdotes.filter((anecdote) =>
+      anecdote.content.toLowerCase().includes(filter.toLowerCase())
+    );
+
+    return [...filtered].sort((a, b) => b.votes - a.votes);
+  });
   const dispatch = useDispatch();
 
   const vote = (anecdote) => {
