@@ -54,4 +54,15 @@ describe('anecdoteReducer', () => {
     expect(newState).toHaveLength(3);
     expect(newState).toContainEqual(action.data);
   });
+
+  test('should initialize all anecdotes to state', () => {
+    const action = {
+      type: 'INIT_ANECDOTES',
+      data: initialState,
+    };
+    const state = [];
+    deepFreeze(state);
+    const newState = anecdoteReducer(state, action);
+    expect(newState).toEqual(action.data);
+  });
 });
