@@ -1,8 +1,5 @@
 import deepFreeze from 'deep-freeze';
-import notificationReducer, {
-  setNotification,
-  clearNotification,
-} from './notificationReducer';
+import notificationReducer, { clearNotification } from './notificationReducer';
 
 describe('notificationReducer', () => {
   const initialState = 'initial notification';
@@ -15,16 +12,6 @@ describe('notificationReducer', () => {
     const state = initialState;
     deepFreeze(state);
     const newState = notificationReducer(state, action);
-    expect(newState).toEqual(action.notification);
-  });
-
-  test('should set notification with setNotification', () => {
-    const action = setNotification('notification with action creator');
-    const state = initialState;
-    deepFreeze(state);
-    const newState = notificationReducer(state, action);
-    expect(action.type).toBe('SET_NOTIFICATION');
-    expect(action.notification).toBe('notification with action creator');
     expect(newState).toEqual(action.notification);
   });
 
